@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+POD_NAME=$(kubectl get pods -l app=docker-private-registry|sed -e '1d'|awk '{print $1}') && kubectl port-forward ${POD_NAME} 5000:5000

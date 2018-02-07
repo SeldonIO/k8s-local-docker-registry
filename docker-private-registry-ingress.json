@@ -1,0 +1,13 @@
+{
+    "apiVersion": "extensions/v1beta1",
+    "kind": "Ingress",
+    "metadata": {
+        "name": "docker-private-registry-ingress"
+    },
+    "spec": {
+        "backend": {
+            "serviceName": "docker-private-registry",
+            "servicePort": 5000
+        }
+    }
+}

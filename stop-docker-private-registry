@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+kubectl delete -f docker-private-registry.json --ignore-not-found=true
+kubectl delete -f docker-private-registry-proxy.json --ignore-not-found=true

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+kubectl apply -f docker-private-registry.json
+echo "waiting before starting proxy..." && sleep 5
+kubectl apply -f docker-private-registry-proxy.json
