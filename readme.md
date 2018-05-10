@@ -67,6 +67,6 @@ Check if the registry catalog can be accessed and the ability to push an image.
     ```sh
     docker run --rm --privileged \
         --pid=host gsunner/ubuntu-socat \
-        nsenter -t 1 -u -n -i socat TCP-LISTEN:5000,fork TCP:docker.for.mac.localhost:5000
+        nsenter -t 1 -u -n -i socat TCP-LISTEN:5000,fork TCP:docker.for.mac.host.internal:5000
     ```
 
