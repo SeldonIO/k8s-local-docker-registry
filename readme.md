@@ -49,4 +49,24 @@ Check if the registry catalog can be accessed and the ability to push an image.
 
     Log into each node in the cluster and ensure that the docker daemon is running with the right "Insecure Registries' list.
 
+    ```sh
     docker info|grep -i -A5 'Insecure Registries'
+    ```
+
+- Docker for Mac issue  
+
+    You may see an error like the following
+
+    ```
+    Get http://127.0.0.1:5000/v2/: dial tcp 127.0.0.1:5000: getsockopt: connection refused
+    ```
+
+    Since docker is running in a VM on the mac, its not possible to directly use "127.0.0.1:5000".  
+    Use socat running in a container as a workaround.
+
+    ```sh
+    docker run --rm --privileged \
+        --pid=host gsunner/ubuntu-socat \
+        nsenter -t 1 -u -n -i socat TCP-LISTEN:5000,fork TCP:docker.for.mac.localhost:5000
+    ```
+
