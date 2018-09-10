@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -o nounset
+set -o errexit
+set -o pipefail
+
+STARTUP_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+echo "running socat..."
+docker run --rm --privileged \
+    --pid=host gsunner/ubuntu-socat \
+    nsenter -t 1 -u -n -i socat TCP-LISTEN:5000,fork TCP:docker.for.mac.host.internal:5000
+
