@@ -5,6 +5,6 @@ set -o errexit
 set -o pipefail
 
 kubectl apply -f docker-private-registry.json -n default
-echo "waiting before starting proxy..." && sleep 5
+kubectl rollout status deploy/docker-private-registry-deployment
 kubectl apply -f docker-private-registry-proxy.json -n default
 
